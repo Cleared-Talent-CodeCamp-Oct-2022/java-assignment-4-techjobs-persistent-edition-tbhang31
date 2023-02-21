@@ -1,12 +1,24 @@
 package org.launchcode.techjobs.persistent.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 
+@MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Id
+    @GeneratedValue
     private int id;
 
+
+    @NotNull(message="This field is required!")
+    @Size(min=3, max=50, message="This field must be between 3 to 50 characters")
     private String name;
 
     public int getId() {
